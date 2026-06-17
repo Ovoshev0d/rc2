@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
  <meta charset="UTF-8">
- <title>Чат с загрузкой файлов</title>
+ <title>Чат с разными цветами</title>
  <style>
  * {
  margin: 0;
@@ -19,7 +19,7 @@
  height: 100vh;
  }
 
-.chat-container {
+ .chat-container {
  width: 400px;
  border-radius: 12px;
  overflow: hidden;
@@ -27,14 +27,14 @@
  background: white;
  }
 
-.chat-header {
+ .chat-header {
  background: #2c3e50;
  color: white;
  padding: 20px;
  text-align: center;
  }
 
-.chat-window {
+ .chat-window {
  height: 400px;
  padding: 20px;
  background: #f8f9fa;
@@ -43,7 +43,7 @@
  flex-direction: column;
  }
 
-.message {
+ .message {
  margin: 10px;
  padding: 12px;
  border-radius: 8px;
@@ -51,30 +51,30 @@
  position: relative;
  }
 
-.message--user {
+ .message--user {
  background: #007bff;
  color: white;
- align-self: flex-end;
+ align-self: flex-end; /* Справа */
  }
 
-.message--other {
+ .message--other {
  background: #e9ecef;
  color: #333;
- align-self: flex-start;
+ align-self: flex-start; /* Слева */
  }
 
-.message-sender {
+ .message-sender {
  font-weight: bold;
  }
 
-.message-form {
+ .message-form {
  padding: 15px;
  border-top: 1px solid #ddd;
  display: flex;
  flex-direction: column;
  }
 
-.message-form input {
+ .message-form input {
  width: 100%;
  padding: 10px;
  margin-bottom: 10px;
@@ -82,7 +82,7 @@
  border-radius: 4px;
  }
 
-.message-form button {
+ .message-form button {
  padding: 10px 15px;
  background: #007bff;
  color: white;
@@ -90,16 +90,6 @@
  border-radius: 4px;
  cursor: pointer;
  margin-top: 10px;
- }
-
-.file-preview {
- margin-top: 10px;
- cursor: pointer;
- }
-
-.file-preview img {
- max-width: 100%;
- height: auto;
  }
  </style>
 </head>
@@ -115,36 +105,41 @@
 
  <div class="message-form">
  <input type="text" id="sender-name" placeholder="Ваше имя" required>
- <input type="text" id="message-input" placeholder="Сообщение">
- <input type="file" id="file-input" accept="image/*,video/*,application/*" style="display: none;">
- <button onclick="chooseFile()">📁 Прикрепить файл</button>
+ <input type="text" id="message-input" placeholder="Сообщение" required>
  <button onclick="sendMessage()">Отправить</button>
  </div>
  </div>
 
  <script>
  let currentUser = 'Пользователь 1'; // Текущий пользователь
- let selectedFile = null;
-
- function chooseFile() {
- document.getElementById('file-input').click();
- }
-
- function handleFileSelect(event) {
- selectedFile = event.target.files[0];
- }
 
  function sendMessage() {
  const senderName = document.getElementById('sender-name').value;
  const messageText = document.getElementById('message-input').value;
  const chatWindow = document.getElementById('chat-window');
  const isUser = senderName === currentUser;
- 
- if (senderName) {
+
+ if (senderName && messageText) {
  const messageDiv = document.createElement('div');
  messageDiv.classList.add('message');
  
  if (isUser) {
  messageDiv.classList.add('message--user');
  } else {
- messageDiv
+ messageDiv.classList.add('message--other');
+ }
+
+ messageDiv.innerHTML = `
+ <div class="message-sender">${senderName}</div>
+ <div class="message-text">${messageText}</div>
+ `;
+ 
+ chatWindow.appendChild(messageDiv);
+ chatWindow.scrollTop = chatWindow.scrollHeight;
+ 
+ document.getElementById('message-input').value = '';
+ }
+ }
+ </script>
+</body>
+</html>
