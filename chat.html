@@ -96,21 +96,19 @@
     const sendButton = document.getElementById("send");
     const chatContainer = document.getElementById("chat");
 
-    document.addEventListener("DOMContentLoaded", loadChatHistory);
-
+    // Загрузка истории сообщений из Local Storage
     function loadChatHistory() {
-        const messages = [
-            { name: "Алексей", text: "Привет! Как дела?", date: new Date(Date.now() - 86400000) }, // 1 день назад
-            { name: "Ольга", text: "Все отлично, спасибо! А у тебя?", date: new Date(Date.now() - 86400000) },
-            { name: "Алексей", text: "Тоже хорошо, план на выходные?", date: new Date(Date.now() - 86400000 * 2) }, // 2 дня назад
-            { name: "Ольга", text: "Хочу отдохнуть, может, погуляем?", date: new Date(Date.now() - 86400000 * 2) },
-            { name: "Дмитрий", text: "Привет, команда!", date: new Date(Date.now() - 86400000 * 3) }, // 3 дня назад
-            { name: "Алексей", text: "Привет, Дмитрий!", date: new Date(Date.now() - 86400000 * 3) },
-        ];
-
+        const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
         messages.forEach(message => {
-            addMessage(message.name, message.text, message.date);
+            addMessage(message.name, message.text, new Date(message.date));
         });
+    }
+
+    // Сохранение сообщений в Local Storage
+    function saveMessage(name, text) {
+        const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+        messages.push({ name, text, date: new Date() });
+        localStorage.setItem('chatMessages', JSON.stringify(messages));
     }
 
     nameInput.addEventListener("input", () => {
@@ -121,8 +119,10 @@
 
     sendButton.addEventListener("click", () => {
         const messageText = messageInput.value.trim();
-        if (messageText && nameInput.value.trim()) {
-            addMessage(nameInput.value.trim(), messageText);
+        const senderName = nameInput.value.trim();
+        if (messageText && senderName) {
+            addMessage(senderName, messageText);
+            saveMessage(senderName, messageText);
             messageInput.value = '';
             messageInput.focus();
         }
@@ -159,6 +159,10 @@
         }
         return color;
     }
+
+    // Загрузка истории сообщений при загрузке страницы
+    document.addEventListener("DOMContentLoaded", loadChatHistory);
+
 </script>
 
 </body>
