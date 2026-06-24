@@ -26,25 +26,25 @@ function searchImage() {
 
     // Проверяем, есть ли такой номер в списке допустимых
     if (!validNumbers.includes(number)) {
-        resultDiv.innerHTML = `<p class="error">PID с номером ${number} не найдена</p>`;
+        resultDiv.innerHTML = `<p class="error">PLU с номером ${number} не найдена</p>`;
         return;
     }
 
     // Формируем путь к картинке
     const imagePath = `PLU RC2/${number}.jpg`;
 
-    resultDiv.innerHTML = '<p class="loading">Загрузка PID...</p>';
+    resultDiv.innerHTML = '<p class="loading">Загрузка PLU...</p>';
 
     console.log(`Попытка загрузить PID: ${imagePath}`);
 
     fetch(imagePath)
         .then(response => {
             if (response.ok) {
-                console.log(`PID ${number} успешно загружена`);
+                console.log(`PLU ${number} успешно загружена`);
                 resultDiv.innerHTML = `
                     <div class="image-container">
-                        <img src="${imagePath}" alt="PID ${number}" onerror="handleImageError(${number})">
-                        <p>PID ${number}</p>
+                        <img src="${imagePath}" alt="PLU ${number}" onerror="handleImageError(${number})">
+                        <p>PLU ${number}</p>
                     </div>
                 `;
             } else {
