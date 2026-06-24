@@ -20,7 +20,7 @@ function searchImage() {
 
     // Проверяем, что введено число
     if (isNaN(number)) {
-        resultDiv.innerHTML = '<p class="error">Пожалуйста, введите корректный PID</p>';
+        resultDiv.innerHTML = '<p class="error">Пожалуйста, введите корректный PLU</p>';
         return;
     }
 
@@ -35,7 +35,7 @@ function searchImage() {
 
     resultDiv.innerHTML = '<p class="loading">Загрузка PLU...</p>';
 
-    console.log(`Попытка загрузить PID: ${imagePath}`);
+    console.log(`Попытка загрузить PLU: ${imagePath}`);
 
     fetch(imagePath)
         .then(response => {
