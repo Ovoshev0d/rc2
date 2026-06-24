@@ -44,7 +44,7 @@ function searchImage() {
                 resultDiv.innerHTML = `
                     <div class="image-container">
                         <img src="${imagePath}" alt="PLU ${number}" onerror="handleImageError(${number})">
-                        <p>PLU ${number}</p>
+                        <p>PLU  ${number}</p>
                     </div>
                 `;
             } else {
@@ -59,6 +59,6 @@ function searchImage() {
 }
 
 function handleImageError(number) {
-    console.warn(`Картинка №${number} не найдена или недоступна`);
-    resultDiv.innerHTML = `<p class="error">PID${number} не найдена или недоступен</p>`;
+    console.warn(`PLU ${number} не найдена или недоступна`);
+    resultDiv.innerHTML = `<p class="error">PLU ${number} не найдена или недоступен</p>`;
 }
