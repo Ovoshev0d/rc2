@@ -44,7 +44,7 @@ function searchImage() {
                 resultDiv.innerHTML = `
                     <div class="image-container">
                         <img src="${imagePath}" alt="PID ${number}" onerror="handleImageError(${number})">
-                        <p>PID${number}</p>
+                        <p>PID ${number}</p>
                     </div>
                 `;
             } else {
