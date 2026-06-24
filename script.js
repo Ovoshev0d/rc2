@@ -44,7 +44,7 @@ function searchImage() {
                 resultDiv.innerHTML = `
                     <div class="image-container">
                         <img src="${imagePath}" alt="PLU ${number}" onerror="handleImageError(${number})">
-                        <p>PLU  ${number}</p>
+                        <p> </p>
                     </div>
                 `;
             } else {
