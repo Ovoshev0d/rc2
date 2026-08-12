@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог оборудования</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            background: #f4f7f6; 
+            padding: 20px; 
+            color: #333;
+        }
+        h1 { 
+            text-align: center; 
+            color: #2c3e50; 
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        .group { 
+            background: white; 
+            margin-bottom: 25px; 
+            padding: 20px; 
+            border-radius: 12px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+            transition: transform 0.3s ease;
+        }
+        .group:hover {
+            transform: translateY(-5px);
+        }
+        h2 { 
+            color: #2980b9; 
+            font-size: 1.4em; 
+            border-bottom: 3px solid #3498db; 
+            padding-bottom: 10px; 
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+            gap: 15px; 
+        }
+        button { 
+            padding: 12px 18px; 
+            cursor: pointer; 
+            border: none; 
+            border-radius: 8px; 
+            background: linear-gradient(45deg, #3498db, #2980b9); /* Градиент */
+            color: white; 
+            font-weight: 500;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(41, 128, 185, 0.4); /* Тень */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        button:hover { 
+            background: linear-gradient(45deg, #2980b9, #1f618d); /* Темнее при наведении */
+            box-shadow: 0 6px 15px rgba(41, 128, 185, 0.6);
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 8px rgba(41, 128, 185, 0.4);
+        }
+        #viewer { 
+            position: fixed; 
+            top: 20px; 
+            right: 20px; 
+            background: white; 
+            padding: 20px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); 
+            text-align: center;
+            width: 220px; /* Фиксированная ширина */
+        }
+        #qrcode { 
+            margin: 10px auto 15px auto; /* Добавляем отступ снизу */
+            border: 3px solid #ecf0f1; /* Небольшая рамка */
+            border-radius: 5px;
+        }
+        #qr-link {
+            color: #2980b9;
+            text-decoration: none;
+            font-size: 0.9em;
+            word-break: break-all; /* Разбивает длинные ссылки */
+        }
+        #qr-link:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            #viewer {
+                position: relative;
+                right: auto;
+                margin: 20px auto;
+                width: 100%;
+                max-width: 300px;
+            }
+            h1 { font-size: 1.5em; }
+            h2 { font-size: 1.2em; }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            button {
+                font-size: 0.9em;
+                padding: 10px 15px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<h1>Каталог Оборудования</h1>
+
+<div id="content"></div>
+
+<div id="viewer">
+    <div id="qrcode"></div>
+    <a id="qr-link" href="#" target="_blank">Открыть ссылку</a>
+</div>
+
+<script>
+    const groups = [
+        {
+            title: "ЛИНИЯ ATLANTA",
+            items: [
+                {name: "Упаковочная машина ATLANTA", url: "https://ghgt.intradesk.ru/assets/list/183417"},
+                {name: "Этикетировщик BIZERBA", url: "https://ghgt.intradesk.ru/assets/list/183418"},
+                {name: "Линия упаковочная Taks, Atlanta", url: "https://ghgt.intradesk.ru/assets/list/183392"}
+            ]
+        },
+        {
+            title: "ЛИНИЯ SIENNA",
+            items: [
+                {name: "Упаковочная машина SIENNA", url: "https://ghgt.intradesk.ru/assets/list/183445"},
+                {name: "Этикетировщик ESPERA 7000", url: "https://ghgt.intradesk.ru/assets/list/183446"},
+                {name: "Линия упаковочная Taks, Sienna", url: "https://ghgt.intradesk.ru/assets/list/183420"}
+            ]
+        },
+        {
+            title: "БОИКСЫ",
+            items: [
+                {name: "БОИКС 1", url: "https://ghgt.intradesk.ru/assets/list/183378"},
+                {name: "БОИКС 2", url: "https://ghgt.intradesk.ru/assets/list/183379"}
+            ]
+        },
+        {
+            title: "КВАНТОВКА",
+            items: [
+                {name: "Паллетайзер TAKS", url: "https://ghgt.intradesk.ru/assets/list/183390"},
+                {name: "Линия квантования Taks", url: "https://ghgt.intradesk.ru/assets/list/183389"}
+            ]
+        },
+        {
+            title: "СОРТИРОВКА",
+            items: [
+                {name: "Машина сортировочная Greefa", url: "https://ghgt.intradesk.ru/assets/list/183387"},
+                {name: "Опрокидыватель Greefa CKKL 1", url: "https://ghgt.intradesk.ru/assets/list/183385"},
+                {name: "Опрокидыватель Greefa CKKL 2", url: "https://ghgt.intradesk.ru/assets/list/183386"},
+                {name: "Транспортировка перед сортировщиком", url: "https://ghgt.intradesk.ru/assets/list/183382"},
+                {name: "Зона пустых ящиков", url: "https://ghgt.intradesk.ru/assets/list/183383"},
+                {name: "Паллетайзер TAKS (сортировка)", url: "https://ghgt.intradesk.ru/assets/list/183391"}
+            ]
+        }
+    ];
+
+    const content = document.getElementById('content');
+    const qrDiv = document.getElementById('qrcode');
+    const qrLink = document.getElementById('qr-link');
+    let qrcode = new QRCode(qrDiv, { width: 180, height: 180 });
+
+    groups.forEach(group => {
+        let section = document.createElement('div');
+        section.className = 'group';
+        section.innerHTML = `<h2>${group.title}</h2><div class="grid"></div>`;
+        
+        group.items.forEach(item => {
+            let btn = document.createElement('button');
+            btn.innerText = item.name;
+            btn.onclick = () => {
+                qrcode.clear();
+                qrcode.makeCode(item.url);
+                qrLink.href = item.url;
+            };
+            section.querySelector('.grid').appendChild(btn);
+        });
+        content.appendChild(section);
+    });
+</script>
+
+</body>
+</html>
