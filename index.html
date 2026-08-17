@@ -12,77 +12,68 @@
             --orange: #f39c12;
             --bg: #fdfaf6;
         }
-
         body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); padding: 20px; margin: 0; }
         h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
-
-        /* Контейнер оборудования */
-        #main-container { width: 100%; display: flex; flex-direction: row; gap: 20px; }
-        #content { flex: 1; }
-
-        /* Боковая панель */
+        #main-container { width: 100%; display: flex; flex-direction: row; gap: 20px; max-width: 1200px; margin: 0 auto; }
+        #content { flex: 2; }
         #sidebar { 
             width: 320px; background: #fff; padding: 20px; border-radius: 15px;
             border: 2px solid var(--cucumber); box-shadow: 0 4px 15px rgba(0,0,0,0.15);
             position: sticky; top: 20px; align-self: flex-start;
         }
-
-        /* Адаптивность: перенос инструкции вниз на мобильных */
         @media (max-width: 900px) {
             #main-container { flex-direction: column; }
-            #sidebar { width: 100%; position: static; box-sizing: border-box; margin-bottom: 20px; }
-            .group { width: 100% !important; margin-left: 0 !important; }
+            #sidebar { width: 100%; position: static; margin-bottom: 20px; }
         }
-
         #qr-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        #open-link-btn {
-            display: none; background: var(--cucumber); color: white; padding: 8px 15px;
-            border-radius: 5px; text-decoration: none; font-size: 13px; font-weight: bold; text-align: center;
-        }
-        
-        #instruction { margin-top: 15px; font-size: 12px; color: #333; line-height: 1.4; border-top: 1px solid #eee; padding-top: 10px; }
-        
+        #open-link-btn { display: none; background: var(--cucumber); color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-size: 13px; font-weight: bold; text-align: center; }
+        #instruction { margin-top: 15px; font-size: 12px; color: #333; line-height: 1.5; border-top: 1px solid #eee; padding-top: 10px; }
         .highlight-green { color: #16a085; font-weight: bold; }
         .highlight-orange { color: var(--orange); font-weight: bold; }
-        .highlight-red { color: var(--tomato); font-weight: bold; }
-
-        .group { background: white; margin-bottom: 25px; padding: 20px; border-radius: 15px; border-left: 8px solid var(--cucumber); box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 100%; max-width: 800px; }
+        .highlight-red { color: #e74c3c; font-weight: bold; }
+        .group { background: white; margin-bottom: 25px; padding: 20px; border-radius: 15px; border-left: 8px solid var(--cucumber); box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 100%; }
         h2 { color: #34495e; margin-top: 0; }
-
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
         button { padding: 10px; border: none; border-radius: 8px; color: white; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .btn-copied { background-color: var(--cucumber) !important; transform: scale(0.95); }
         .btn-atlanta { background-color: var(--tomato); }
         .btn-sienna { background-color: #8e44ad; }
         .btn-boix { background-color: #f39c12; }
         .btn-quant { background-color: #3498db; }
         .btn-sort { background-color: var(--cucumber); }
-
         button:hover { filter: brightness(1.2); }
     </style>
 </head>
 <body>
 
 <h1>Каталог Оборудования</h1>
-
 <div id="main-container">
     <div id="content"></div>
-
     <div id="sidebar">
         <div id="qr-wrapper">
             <div id="qrcode"></div>
             <a id="open-link-btn" href="#" target="_blank">Открыть страницу</a>
+          
         </div>
         <div id="instruction">
             <strong>Инструкция по отправке заявки (IntraDesk):</strong>
-            <ol>
-                <li>Открываем мобильное приложение IntraDesk</li>
+  <ol>
+                
+<li>Открываем мобильное приложение IntraDesk</li>
+
                 <li>В заявках нажимаем <span class="highlight-green">«+»</span></li>
+
                 <li>Выбираем <span class="highlight-green">«03_РЦ регистрация инцидента (QR-cod)»</span></li>
-                <li>В описание пишем, что неисправно.</li>
-                <li>В графе <span class="highlight-green">«№ РЦ»</span> пишем <span class="highlight-green">2</span></li>
+ 
+               <li>В описание пишем, что неисправно.</li>
+          
+      <li>В графе <span class="highlight-green">«№ РЦ»</span> пишем <span class="highlight-green">2</span></li>
+
                 <li>В графе <span class="highlight-green">«№ линии/участка»</span> пишем <span class="highlight-green">1, 2, 3 или 4</span>.</li>
-                <li>В графе <span class="highlight-green">«начало простоя»</span> выбираем время, когда произошла поломка.</li>
-                <li>В графе <span class="highlight-green">«Приоритет»</span>: 
+    
+            <li>В графе <span class="highlight-green">«начало простоя»</span> выбираем время, когда произошла поломка.</li>
+         
+       <li>В графе <span class="highlight-green">«Приоритет»</span>: 
                     <ul>
                         <li> <span class="highlight-orange">Высокий</span> – через 10 минут после поломки. </li>
                         <li> <span class="highlight-red">Критично</span> – 4 часа если ремонт не завершён.</li>
@@ -98,32 +89,33 @@
 </div>
 
 <script>
-    const groups = [
+    // Массив объектов: shortName - для кнопки, fullName - для копирования в буфер
+    const data = [
         { title: "ЛИНИЯ ATLANTA", color: "btn-atlanta", items: [
-            {name: "Упаковочная ATLANTA", url: "https://ghgt.intradesk.ru/assets/list/183417"},
-            {name: "Этикетировщик BIZERBA", url: "https://ghgt.intradesk.ru/assets/list/183418"},
-            {name: "Линия Taks, Atlanta", url: "https://ghgt.intradesk.ru/assets/list/183392"}
+            {short: "Упаковочная ATLANTA", full: "1.2.6.47 Машина упаковочная Ulma ATLANTA", url: "https://ghgt.intradesk.ru/assets/list/183417"},
+            {short: "Этикетировщик BIZERBA", full: "1.2.6.48 Автомат этикетировочный Bizerba GLM-I G5 170", url: "https://ghgt.intradesk.ru/assets/list/183418"},
+            {short: "Линия Taks, Atlanta", full: "1.2.6.46 Линия упаковочная Taks PL2", url: "https://ghgt.intradesk.ru/assets/list/183392"}
         ]},
         { title: "ЛИНИЯ SIENNA", color: "btn-sienna", items: [
-            {name: "Упаковочная SIENNA", url: "https://ghgt.intradesk.ru/assets/list/183445"},
-            {name: "Этикетировщик ESPERA", url: "https://ghgt.intradesk.ru/assets/list/183446"},
-            {name: "Линия Taks, Sienna", url: "https://ghgt.intradesk.ru/assets/list/183420"}
+            {short: "Упаковочная SIENNA", full: "1.2.6.51 Машина упаковочная Ulma SIENNA LS", url: "https://ghgt.intradesk.ru/assets/list/183445"},
+            {short: "Этикетировщик ESPERA 7000", full: "1.2.6.52 Аппликатор этикеток Espera ES7011", url: "https://ghgt.intradesk.ru/assets/list/183446"},
+            {short: "Линия Taks, Sienna", full: "1.2.6.50 Линия упаковочная Taks PL3", url: "https://ghgt.intradesk.ru/assets/list/183420"}
         ]},
         { title: "БОИКСЫ", color: "btn-boix", items: [
-            {name: "БОИКС 1", url: "https://ghgt.intradesk.ru/assets/list/183378"},
-            {name: "БОИКС 2", url: "https://ghgt.intradesk.ru/assets/list/183379"}
+            {short: "БОИКС 1", full: "1.2.6.32 Машина норобосборочная BOIX FP-A/2M", url: "https://ghgt.intradesk.ru/assets/list/183378"},
+            {short: "БОИКС 2", full: "1.2.6.33 Машина норобосборочная BOIX FP-A/2M", url: "https://ghgt.intradesk.ru/assets/list/183379"}
         ]},
         { title: "КВАНТОВКА", color: "btn-quant", items: [
-            {name: "Паллетайзер TAKS", url: "https://ghgt.intradesk.ru/assets/list/183390"},
-            {name: "Линия квантования", url: "https://ghgt.intradesk.ru/assets/list/183389"}
+            {short: "Паллетайзер TAKS", full: "1.2.6.44 Паллетайзер Taks PS2", url: "https://ghgt.intradesk.ru/assets/list/183390"},
+            {short: "Линия квантования Taks", full: "1.2.6.43 Линия квантования Taks PL1", url: "https://ghgt.intradesk.ru/assets/list/183389"}
         ]},
         { title: "СОРТИРОВКА", color: "btn-sort", items: [
-            {name: "Сортировщик Greefa", url: "https://ghgt.intradesk.ru/assets/list/183387"},
-            {name: "Опрокидыватель CKKL 1", url: "https://ghgt.intradesk.ru/assets/list/183385"},
-            {name: "Опрокидыватель CKKL 2", url: "https://ghgt.intradesk.ru/assets/list/183386"},
-            {name: "Транспортировка", url: "https://ghgt.intradesk.ru/assets/list/183382"},
-            {name: "Зона пустых ящиков", url: "https://ghgt.intradesk.ru/assets/list/183383"},
-            {name: "Паллетайзер TAKS", url: "https://ghgt.intradesk.ru/assets/list/183391"}
+            {short: "Сортировщик Greefa", full: "1.2.6.41 Машина сортировочная Greefa EN60204", url: "https://ghgt.intradesk.ru/assets/list/183387"},
+            {short: "Опрокидыватель CKKL 1", full: "1.2.6.39 Опрокидыватель контейнеров Greefa CKKL", url: "https://ghgt.intradesk.ru/assets/list/183385"},
+            {short: "Опрокидыватель CKKL 2", full: "1.2.6.40 Опрокидыватель контейнеров Greefa CKKL", url: "https://ghgt.intradesk.ru/assets/list/183386"},
+            {short: "Транспортировка", full: "1.2.6.36 Зона транспортировки перед сортировщиком Taks BT1", url: "https://ghgt.intradesk.ru/assets/list/183382"},
+            {short: "Зона пустых ящиков", full: "1.2.6.37 Зона пустых ящиков для сортировочной зоны Taks BT4", url: "https://ghgt.intradesk.ru/assets/list/183383"},
+            {short: "Паллетайзер TAKS", full: "1.2.6.45 Паллетайзер Taks PS1", url: "https://ghgt.intradesk.ru/assets/list/183391"}
         ]}
     ];
 
@@ -132,7 +124,7 @@
     const linkBtn = document.getElementById('open-link-btn');
     let qrcode = new QRCode(qrDiv, { width: 150, height: 150 });
 
-    groups.forEach(group => {
+    data.forEach(group => {
         let section = document.createElement('div');
         section.className = 'group';
         section.innerHTML = `<h2>${group.title}</h2><div class="grid"></div>`;
@@ -140,21 +132,28 @@
         group.items.forEach(item => {
             let btn = document.createElement('button');
             btn.className = group.color;
-            btn.innerText = item.name;
+            btn.innerText = item.short; // Возвращаем короткие заголовки
+            
             btn.onclick = () => {
+                // Копируем fullName в буфер
+                navigator.clipboard.writeText(item.full);
+                btn.classList.add('btn-copied');
+                setTimeout(() => btn.classList.remove('btn-copied'), 500);
+                
                 qrcode.clear();
                 qrcode.makeCode(item.url);
                 linkBtn.href = item.url;
                 linkBtn.style.display = 'block';
-                linkBtn.innerText = `Открыть: ${item.name}`;
-                // Прокрутка к QR-коду на мобильных
-                document.getElementById('sidebar').scrollIntoView({ behavior: 'smooth' });
+                linkBtn.innerText = `Открыть: ${item.short}`;
+                
+                if (window.innerWidth <= 900) {
+                    document.getElementById('sidebar').scrollIntoView({ behavior: 'smooth' });
+                }
             };
             section.querySelector('.grid').appendChild(btn);
         });
         content.appendChild(section);
     });
 </script>
-
 </body>
 </html>
