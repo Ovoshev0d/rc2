@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог Оборудования</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        :root {
+            --tomato: #e74c3c;
+            --cucumber: #27ae60;
+            --orange: #f39c12;
+            --bg: #fdfaf6;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); padding: 20px; margin: 0; }
+        h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
+        #main-container { width: 100%; display: flex; flex-direction: row; gap: 20px; max-width: 1200px; margin: 0 auto; }
+        #content { flex: 2; }
+        #sidebar { 
+            width: 320px; background: #fff; padding: 20px; border-radius: 15px;
+            border: 2px solid var(--cucumber); box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            position: sticky; top: 20px; align-self: flex-start;
+        }
+        @media (max-width: 900px) {
+            #main-container { flex-direction: column; }
+            #sidebar { width: 100%; position: static; margin-bottom: 20px; }
+        }
+        #qr-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        #open-link-btn { display: none; background: var(--cucumber); color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-size: 13px; font-weight: bold; text-align: center; }
+        #instruction { margin-top: 15px; font-size: 12px; color: #333; line-height: 1.5; border-top: 1px solid #eee; padding-top: 10px; }
+        .highlight-green { color: #16a085; font-weight: bold; }
+        .highlight-orange { color: var(--orange); font-weight: bold; }
+        .highlight-red { color: #e74c3c; font-weight: bold; }
+        .group { background: white; margin-bottom: 25px; padding: 20px; border-radius: 15px; border-left: 8px solid var(--cucumber); box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 100%; }
+        h2 { color: #34495e; margin-top: 0; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+        button { padding: 10px; border: none; border-radius: 8px; color: white; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .btn-copied { background-color: var(--cucumber) !important; transform: scale(0.95); }
+        .btn-atlanta { background-color: var(--tomato); }
+        .btn-sienna { background-color: #8e44ad; }
+        .btn-boix { background-color: #f39c12; }
+        .btn-quant { background-color: #3498db; }
+        .btn-sort { background-color: var(--cucumber); }
+        button:hover { filter: brightness(1.2); }
+    </style>
+</head>
+<body>
+
+<h1>Каталог Оборудования</h1>
+<div id="main-container">
+    <div id="content"></div>
+    <div id="sidebar">
+        <div id="qr-wrapper">
+            <div id="qrcode"></div>
+            <a id="open-link-btn" href="#" target="_blank">Открыть страницу</a>
+          
+        </div>
+        <div id="instruction">
+            <strong>Инструкция по отправке заявки (IntraDesk):</strong>
+  <ol>
+                
+<li>Открываем мобильное приложение IntraDesk</li>
+
+                <li>В заявках нажимаем <span class="highlight-green">«+»</span></li>
+                <li>Выбираем <span class="highlight-green">«Овощевод»</span></li>
+                <li>Выбираем <span class="highlight-green">«02 РЦ»</span></li>
+<li>В графе <span class="highlight-green">«Введите название заявки»</span> пишем <span class="highlight-green">наименование оборудование</span></li>
+ <li>В графе <span class="highlight-green">«Описание»</span> пишем, <span class="highlight-green">что неисправно в оборудование.</span></li>
+          <li>В графе <span class="highlight-green">«Приоритет»</span> выбираем: 
+                    <ul>
+                        <li> <span class="highlight-orange">Высокий</span> – через 10 минут после поломки. </li>
+                        <li> <span class="highlight-red">Критично</span> – 4 часа если ремонт не завершён.</li>
+                    </ul>
+                </li>           
+            
+                <li>В графе <span class="highlight-green">«Тепличный блок/Очередь»</span> выбираем <span class="highlight-green">ЛЦ 02</span>.</li>
+                
+                 <li>Нажимаем <span class="highlight-green">«Создать заявку»</span>.</li>
+                <li>После ремонта с комментарием <span class="highlight-green">«Выполнена»</span> закрываем.</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Массив объектов: shortName - для кнопки, fullName - для копирования в буфер
+    const data = [
+        { title: "ЛИНИЯ ATLANTA", color: "btn-atlanta", items: [
+            {short: "Упаковочная ATLANTA", full: "1.2.6.47 Машина упаковочная Ulma ATLANTA E", url: "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742"},
+            {short: "Этикетировщик BIZERBA", full: "1.2.6.48 Автомат этикетировочный Bizerba GLM-I G5 170", url: "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742"},
+            {short: "Линия Taks, Atlanta", full: "1.2.6.46 Линия упаковочная Taks PL2", url: "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742"}
+        ]},
+        { title: "ЛИНИЯ SIENNA", color: "btn-sienna", items: [
+            {short: "Упаковочная SIENNA", full: "1.2.6.51 Машина упаковочная Ulma SIENNA LS", url: "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742"},
+            {short: "Этикетировщик ESPERA 7000", full: "1.2.6.52 Аппликатор этикеток Espera ES7011", url: "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742"},
+            {short: "Линия Taks, Sienna", full: "1.2.6.50 Линия упаковочная Taks PL3", url: "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742"}
+        ]},
+        { title: "БОИКСЫ", color: "btn-boix", items: [
+            {short: "БОИКС 1", full: "1.2.6.32 Машина норобосборочная BOIX FP-A/2M", url: "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742"},
+            {short: "БОИКС 2", full: "1.2.6.33 Машина норобосборочная BOIX FP-A/2M", url: "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742"}
+        ]},
+        { title: "КВАНТОВКА", color: "btn-quant", items: [
+            {short: "Паллетайзер TAKS", full: "1.2.6.44 Паллетайзер Taks PS2", url: "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742"},
+            {short: "Линия квантования Taks", full: "1.2.6.43 Линия квантования Taks PL1", url: "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742"}
+        ]},
+        { title: "СОРТИРОВКА", color: "btn-sort", items: [
+            {short: "Сортировщик Greefa", full: "1.2.6.41 Машина сортировочная Greefa EN60204", url: "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742"},
+            {short: "Опрокидыватель CKKL 1", full: "1.2.6.39 Опрокидыватель контейнеров Greefa CKKL", url: "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742"},
+            {short: "Опрокидыватель CKKL 2", full: "1.2.6.40 Опрокидыватель контейнеров Greefa CKKL", url: "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742"},
+            {short: "Транспортировка", full: "1.2.6.36 Зона транспортировки перед сортировщиком Taks BT1", url: "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742"},
+            {short: "Зона пустых ящиков", full: "1.2.6.37 Зона пустых ящиков для сортировочной зоны Taks BT4", url: "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742"},
+            {short: "Паллетайзер TAKS", full: "1.2.6.45 Паллетайзер Taks PS1", url: "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742"}
+        ]}
+    ];
+
+    const content = document.getElementById('content');
+    const qrDiv = document.getElementById('qrcode');
+    const linkBtn = document.getElementById('open-link-btn');
+    let qrcode = new QRCode(qrDiv, { width: 150, height: 150 });
+
+    data.forEach(group => {
+        let section = document.createElement('div');
+        section.className = 'group';
+        section.innerHTML = `<h2>${group.title}</h2><div class="grid"></div>`;
+        
+        group.items.forEach(item => {
+            let btn = document.createElement('button');
+            btn.className = group.color;
+            btn.innerText = item.short; // Возвращаем короткие заголовки
+            
+            btn.onclick = () => {
+                // Копируем fullName в буфер
+                navigator.clipboard.writeText(item.full);
+                btn.classList.add('btn-copied');
+                setTimeout(() => btn.classList.remove('btn-copied'), 500);
+                
+                qrcode.clear();
+                qrcode.makeCode(item.url);
+                linkBtn.href = item.url;
+                linkBtn.style.display = 'block';
+                linkBtn.innerText = `Открыть: ${item.short}`;
+                
+                if (window.innerWidth <= 900) {
+                    document.getElementById('sidebar').scrollIntoView({ behavior: 'smooth' });
+                }
+            };
+            section.querySelector('.grid').appendChild(btn);
+        });
+        content.appendChild(section);
+    });
+</script>
+</body>
+</html>
