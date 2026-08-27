@@ -43,8 +43,11 @@
 .group { background: white; margin-bottom: 25px; padding: 20px; border-radius: 15px; border-left: 8px solid var(--cucumber); box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 100%; }
         h2 { color: #34495e; margin-top: 0; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
-        button { padding: 10px; border: none; border-radius: 8px; color: white; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .btn-copied { background-color: var(--cucumber) !important; transform: scale(0.95); }
+        button { padding: 10px; border: none; border-radius: 8px; color: white; cursor: pointer; font-weight: bold; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+                button:hover { transform: scale(1.03); box-shadow: 0 8px 15px rgba(0,0,0,0.15); filter: brightness(1.1); }
+        button:active { transform: scale(0.95); }
+.btn-copied { background-color: var(--cucumber) !important; transform: scale(0.95); }
         .btn-atlanta { background-color: var(--tomato); }
         .btn-sienna { background-color: #8e44ad; }
         .btn-boix { background-color: #f39c12; }
