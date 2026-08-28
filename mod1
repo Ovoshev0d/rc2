@@ -104,8 +104,8 @@ box-shadow: 0 2px 8px rgba(0,0,0,0.08); opacity: 0; animation: show 0.6s ease fo
 <script>
     const data = [
         { title: "ЛИНИЯ ATLANTA", color: "#e74c3c", items: [
-            {short: "Упаковочная ATLANTA", full: "1.2.6.47 Машина упаковочная Ulma ATLANTA E", img: "https://via.placeholder.com/150/e74c3c/FFFFFF?text=ATLANTA"},
-            {short: "Этикетировщик BIZERBA", full: "1.2.6.48 Автомат этикетировочный Bizerba GLM-I G5 170", img: "https://via.placeholder.com/150/e67e22/FFFFFF?text=BIZERBA"},
+            {short: "Упаковочная ATLANTA", full: "1.2.6.47 Машина упаковочная Ulma ATLANTA E", img: "img/atlanta.jpg?text=ATLANTA"},
+            {short: "Этикетировщик BIZERBA", full: "1.2.6.48 Автомат этикетировочный Bizerba GLM-I G5 170", img: "img/sienna.jpg?text=BIZERBA"},
             {short: "Линия Taks, Atlanta", full: "1.2.6.46 Линия упаковочная Taks PL2", img: "https://via.placeholder.com/150/d35400/FFFFFF?text=TAKS"}
         ]},
         { title: "ЛИНИЯ SIENNA", color: "#8e44ad", items: [
