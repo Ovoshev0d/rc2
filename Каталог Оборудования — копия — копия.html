@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог Оборудования</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg: #f0f2f5; --card: #ffffff; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); padding: 20px; margin: 0; color: #333; }
+        .wrapper { display: flex; gap: 20px; max-width: 1000px; margin: 0 auto; align-items: flex-start; }
+        .content { flex: 2; }
+#main-container { width: 100%; display: flex; flex-direction: row; gap: 55px; max-width: 1200px; margin: 0 auto; }        
+ /* Эффект при наведении на группу */
+.group {
+    /* ... ваши предыдущие стили ... */
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Плавность */
+}
+
+.group:hover {
+    transform: scale(1.015) translateY(-5px); /* Легкое увеличение и подъем */
+    box-shadow: 0 12px 20px rgba(0,0,0,0.15); /* Усиление тени */
+    border-left-width: 1px; /* Утолщение цветной полоски слева */
+
+    cursor: pointer;
+}   
+        .group:hover { transform: translateY(-5px); }        
+.group { background: var(--card); padding: 18px; border-radius: 12px; margin-bottom: 15px; border-left: 6px solid var(--clr);
+                 
+box-shadow: 0 2px 8px rgba(0,0,0,0.08); opacity: 0; animation: show 0.6s ease forwards; }
+        @keyframes show { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        
+        h2 { font-size: 15px; margin: 0 0 12px 0; color: #2c3e50; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
+        
+        /* Кнопки с объемным эффектом */
+        button { 
+            border: none; padding: 10px; border-radius: 8px; color: white; font-weight: 600; cursor: pointer; 
+            font-size: 13px; transition: transform 0.6s ease; cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 0 rgba(0,0,0,0.15);  
+        }
+        button:hover { 
+            transform: translateY(-5px) scale(1.05); 
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2); 
+            filter: brightness(1.1);
+        }
+        button:active { transform: translateY(0); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+        
+        .sidebar { width: 320px; background: var(--card); padding: 20px; border-radius: 12px; position: sticky; top: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; }
+        #item-img { width: 150px; height: 150px; margin: 0 auto 15px; display: none; border-radius: 8px; border: 1px solid #eee; object-fit: cover; }
+        .anim-img { animation: pop 0.4s ease-out; }
+        @keyframes pop { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        
+        .btn-link { 
+            display: none; width: 100%; max-width: 180px; padding: 12px; margin: 15px auto 20px auto;
+            border-radius: 8px; background: linear-gradient(135deg, #6c5ce7, #a29bfe); color: white; 
+            text-decoration: none; font-weight: 600; font-size: 13px; box-shadow: 0 4px 10px rgba(108, 92, 231, 0.3);
+            transition: all 0.3s;
+        }
+        .btn-link:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4); }
+        
+        .instr { font-size: 13px; line-height: 1.5; text-align: left; }
+        ol { padding-left: 20px; margin: 10px 0; }
+        .h-g { color: #27ae60; font-weight: bold; }
+        .h-o { color: #fd7e14; font-weight: bold; }
+        .h-r { color: #dc3545; font-weight: bold; }
+
+        @media (max-width: 900px) { .wrapper { flex-direction: column; } .sidebar { position: static; margin-top: 20px; } }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="content" id="content"></div>
+    <div class="sidebar">
+        <img id="item-img" src="" alt="Оборудование">
+        <a id="btn-link" class="btn-link" target="_blank"><i class="fas fa-external-link-alt"></i> В IntraDesk</a>
+        <div class="instr">
+            <strong>Инструкция по отправке заявки (IntraDesk):</strong>
+  <ol>
+                
+<li>Открываем мобильное приложение IntraDesk</li>
+
+                <li>В заявках нажимаем <span class="h-g">«+»</span></li>
+                <li>Выбираем <span class="h-g">«Овощевод»</span></li>
+                <li>Выбираем <span class="h-g">«02 РЦ»</span></li>
+<li>В графе <span class="h-g">«Введите название заявки»</span> пишем <span class="h-g">наименование оборудование</span></li>
+ <li>В графе <span class="h-g">«Описание»</span> пишем, <span class="h-g">что неисправно в оборудование.</span></li>
+          <li>В графе <span class="h-g">«Приоритет»</span> выбираем: 
+                    <ul>
+                        <li> <span class="h-o">Высокий</span> – через 10 минут после поломки. </li>
+                        <li> <span class="h-r">Критично</span> – 4 часа если ремонт не завершён.</li>
+                    </ul>
+                </li>           
+            
+                <li>В графе <span class="h-g">«Тепличный блок/Очередь»</span> выбираем <span class="highlight-green">ЛЦ 02</span>.</li>
+                
+                 <li>Нажимаем <span class="h-g">«Создать заявку»</span>.</li>
+                <li>После ремонта с комментарием <span class="h-g">«Выполнена»</span> закрываем.</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<script>
+    const data = [
+        { title: "ЛИНИЯ ATLANTA", color: "#e74c3c", items: [
+            {short: "Упаковочная ATLANTA", full: "1.2.6.47 Машина упаковочная Ulma ATLANTA E", img: "https://via.placeholder.com/150/e74c3c/FFFFFF?text=ATLANTA"},
+            {short: "Этикетировщик BIZERBA", full: "1.2.6.48 Автомат этикетировочный Bizerba GLM-I G5 170", img: "https://via.placeholder.com/150/e67e22/FFFFFF?text=BIZERBA"},
+            {short: "Линия Taks, Atlanta", full: "1.2.6.46 Линия упаковочная Taks PL2", img: "https://via.placeholder.com/150/d35400/FFFFFF?text=TAKS"}
+        ]},
+        { title: "ЛИНИЯ SIENNA", color: "#8e44ad", items: [
+            {short: "Упаковочная SIENNA", full: "1.2.6.51 Машина упаковочная Ulma SIENNA LS", img: "https://via.placeholder.com/150/8e44ad/FFFFFF?text=SIENNA"},
+            {short: "Этикетировщик ESPERA 7000", full: "1.2.6.52 Аппликатор этикеток Espera ES7011", img: "https://via.placeholder.com/150/9b59b6/FFFFFF?text=ESPERA"},
+            {short: "Линия Taks, Sienna", full: "1.2.6.50 Линия упаковочная Taks PL3", img: "https://via.placeholder.com/150/6c3483/FFFFFF?text=TAKS"}
+        ]},
+        { title: "БОИКСЫ", color: "#f39c12", items: [
+            {short: "БОИКС 1", full: "1.2.6.32 Машина коробосборочная BOIX FP-4/2M", img: "https://via.placeholder.com/150/f39c12/FFFFFF?text=BOIX1"},
+            {short: "БОИКС 2", full: "1.2.6.33 Машина коробосборочная BOIX FP-4/2M", img: "https://via.placeholder.com/150/d68910/FFFFFF?text=BOIX2"}
+        ]},
+        { title: "КВАНТОВКА", color: "#3498db", items: [
+            {short: "Паллетайзер TAKS", full: "1.2.6.44 Паллетайзер Taks PS2", img: "https://via.placeholder.com/150/3498db/FFFFFF?text=PS2"},
+            {short: "Линия квантования Taks", full: "1.2.6.43 Линия квантования Taks PL1", img: "https://via.placeholder.com/150/2980b9/FFFFFF?text=PL1"}
+        ]},
+        { title: "СОРТИРОВКА", color: "#27ae60", items: [
+            {short: "Сортировщик Greefa", full: "1.2.6.41 Машина сортировочная Greefa EN60204", img: "https://via.placeholder.com/150/27ae60/FFFFFF?text=GREEFA"},
+            {short: "Опрокидыватель CKKL 1", full: "1.2.6.39 Опрокидыватель контейнеров Greefa CKKL", img: "https://via.placeholder.com/150/1e8449/FFFFFF?text=CKKL1"},
+            {short: "Опрокидыватель CKKL 2", full: "1.2.6.40 Опрокидыватель контейнеров Greefa CKKL", img: "https://via.placeholder.com/150/1e8449/FFFFFF?text=CKKL2"},
+            {short: "Зона транспортировки", full: "1.2.6.36 Зона транспортировки перед сортировщиком Taks BT1", img: "https://via.placeholder.com/150/2ecc71/FFFFFF?text=BT1"},
+            {short: "Зона пустых ящиков", full: "1.2.6.37 Зона пустых ящиков для сортировочной зоны Taks BT4", img: "https://via.placeholder.com/150/2ecc71/FFFFFF?text=BT4"},
+            {short: "Паллетайзер TAKS", full: "1.2.6.45 Паллетайзер Taks PS1", img: "https://via.placeholder.com/150/27ae60/FFFFFF?text=PS1"}
+        ]},
+        { title: "МОЙКА", color: "#FF3F69C4", items: [
+            {short: "Мойки и сушки ящиков XUKLA", full: "1.2.6.60 Установка туннельная для мойки и сушки ящиков XUKLA ESFERA 125701", img: "https://via.placeholder.com/150/3f69c4/FFFFFF?text=XUKLA"}
+        ]}
+    ];
+
+    const content = document.getElementById('content');
+    const imgEl = document.getElementById('item-img');
+    const btnLink = document.getElementById('btn-link');
+
+    data.forEach((group, index) => {
+        let section = document.createElement('div');
+        section.className = 'group';
+        section.style.setProperty('--clr', group.color);
+        section.style.animationDelay = (index * 0.15) + 's'; 
+        
+        section.innerHTML = `<h2>${group.title}</h2><div class="grid"></div>`;
+        
+        group.items.forEach(item => {
+            let btn = document.createElement('button');
+            btn.style.background = group.color;
+            btn.innerText = item.short;
+            btn.onclick = () => {
+                navigator.clipboard.writeText(item.full);
+                imgEl.src = item.img;
+                imgEl.style.display = 'block';
+                imgEl.classList.remove('anim-img');
+                void imgEl.offsetWidth; 
+                imgEl.classList.add('anim-img');
+                
+                btnLink.href = "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742";
+                btnLink.style.display = 'block';
+            };
+            section.querySelector('.grid').appendChild(btn);
+        });
+        content.appendChild(section);
+    });
+</script>
+</body>
+</html>
