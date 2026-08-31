@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -7,75 +7,87 @@
     <style>
         :root { --bg: #f0f2f5; --card: #ffffff; }
         body { font-family: 'Segoe UI', sans-serif; background: var(--bg); padding: 20px; margin: 0; color: #333; }
+        
         .wrapper { display: flex; gap: 20px; max-width: 1000px; margin: 0 auto; align-items: flex-start; }
-        .content { flex: 2; }
-#main-container { width: 100%; display: flex; flex-direction: row; gap: 55px; max-width: 1200px; margin: 0 auto; }        
- /* Эффект при наведении на группу */
-.group {
-    /* ... ваши предыдущие стили ... */
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Плавность */
-}
+        .content { flex: 1; }
 
-.group:hover {
+        .sidebar-wrapper { width: 320px; position: relative; }
+        .sidebar { 
+            width: 320px; background: var(--card); padding: 20px; border-radius: 12px; 
+            position: sticky; top: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+            text-align: center;
+        }
+
+        #item-img { width: 250px; height: 150px; margin: 0 auto 15px; display: none; border-radius: 8px; border: 1px solid #eee; object-fit: cover; }
+        .anim-img { animation: pop 0.4s ease-out; }
+        @keyframes pop { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+        .group { background: var(--card); padding: 18px; border-radius: 12px; margin-bottom: 15px; border-left: 6px solid var(--clr);
+                 box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.4s; }
+  .group:hover {
     transform: scale(1.015) translateY(-5px); /* Легкое увеличение и подъем */
     box-shadow: 0 12px 20px rgba(0,0,0,0.15); /* Усиление тени */
     border-left-width: 1px; /* Утолщение цветной полоски слева */
-
     cursor: pointer;
 }   
-        .group:hover { transform: translateY(-5px); }        
-.group { background: var(--card); padding: 18px; border-radius: 12px; margin-bottom: 15px; border-left: 6px solid var(--clr);
-                 
-box-shadow: 0 2px 8px rgba(0,0,0,0.08); opacity: 0; animation: show 0.6s ease forwards; }
-        @keyframes show { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
         
         h2 { font-size: 15px; margin: 0 0 12px 0; color: #2c3e50; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
         
-        /* Кнопки с объемным эффектом */
-        button { 
-            border: none; padding: 10px; border-radius: 8px; color: white; font-weight: 600; cursor: pointer; 
-            font-size: 13px; transition: transform 0.6s ease; cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 4px 0 rgba(0,0,0,0.15);  
-        }
-        button:hover { 
-            transform: translateY(-5px) scale(1.05); 
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2); 
-            filter: brightness(1.1);
-        }
-        button:active { transform: translateY(0); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
-        
-        .sidebar { width: 320px; background: var(--card); padding: 20px; border-radius: 12px; position: sticky; top: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; }
-        #item-img { width: 250px; height: 150px; margin: 0 auto 15px; display: none; border-radius: 8px; border: 1px solid #eee; object-fit: cover; }
-        .anim-img { animation: pop 0.4s ease-out; }
-        @keyframes pop { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-        
-        .btn-link { 
-            display: none; width: 100%; max-width: 180px; padding: 12px; margin: 15px auto 20px auto;
-            border-radius: 8px; background: linear-gradient(135deg, #6c5ce7, #a29bfe); color: white; 
-            text-decoration: none; font-weight: 600; font-size: 13px; box-shadow: 0 4px 10px rgba(108, 92, 231, 0.3);
-            transition: all 0.3s;
-        }
-        .btn-link:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4); }
+        button { border: none; padding: 10px; border-radius: 8px; color: white; font-weight: 600; cursor: pointer; 
+                 transition: transform 0.6s ease; box-shadow: 0 4px 0 rgba(0,0,0,0.15); }
+        button:hover { transform: translateY(-5px) scale(1.05); filter: brightness(1.1); }
+
+        .btn-link { display: none; width: 100%; max-width: 180px; padding: 12px; margin: 15px auto 20px auto;
+                    border-radius: 8px; background: linear-gradient(135deg, #6c5ce7, #a29bfe); color: white; 
+                    text-decoration: none; font-weight: 600; font-size: 13px; box-shadow: 0 4px 10px rgba(108, 92, 231, 0.3); }
         
         .instr { font-size: 13px; line-height: 1.5; text-align: left; }
-        ol { padding-left: 20px; margin: 10px 0; }
         .h-g { color: #27ae60; font-weight: bold; }
         .h-o { color: #fd7e14; font-weight: bold; }
         .h-r { color: #dc3545; font-weight: bold; }
 
-        @media (max-width: 900px) { .wrapper { flex-direction: column; } .sidebar { position: static; margin-top: 20px; } }
+        /* Фиксик - Базовый стиль */
+        .fixik { 
+            position: fixed; 
+            width: 60px; 
+            z-index: 9999; 
+            transition: all 1.5s ease-in-out; 
+            pointer-events: none; 
+            opacity: 0; 
+        }
+
+        /* Стиль для взрыва */
+        .exploding { 
+            transform: scale(2); 
+        }
+        /* Ссылка на GIF взрыва - ЗАМЕНИТЕ НА СВОЮ */
+        .exploding-url {
+            content: url('fire.gif'); 
+        }
     </style>
 </head>
 <body>
 
+<!-- Набор фиксиков, которые будут использоваться -->
+<div id="fixik-pool">
+    <img class="fixik" src="1.gif" alt="Fixik Simka">
+    <img class="fixik" src="2.gif" alt="Fixik Verka">
+    <img class="fixik" src="3.gif" alt="Fixik Fire">
+    <img class="fixik" src="4.gif" alt="Fixik Shpula">
+    <img class="fixik" src="1.gif" alt="Fixik Nolik">
+    <img class="fixik" src="3.gif" alt="Fixik Papus">
+</div>
+
 <div class="wrapper">
     <div class="content" id="content"></div>
-    <div class="sidebar">
-        <img id="item-img" src="" alt="Оборудование">
-        <a id="btn-link" class="btn-link" target="_blank"><i class="fas fa-external-link-alt"></i> В IntraDesk</a>
-        <div class="instr">
-            <strong>Инструкция по отправке заявки (IntraDesk):</strong>
+
+    <div class="sidebar-wrapper">
+        <div class="sidebar">
+            <img id="item-img" src="" alt="Оборудование">
+            <a id="btn-link" class="btn-link" target="_blank"><i class="fas fa-external-link-alt"></i> В IntraDesk</a>
+            <div class="instr">
+                <strong>Инструкция по отправке заявки (IntraDesk):</strong>
   <ol>
                 
 <li>Открываем мобильное приложение IntraDesk</li>
@@ -97,11 +109,26 @@ box-shadow: 0 2px 8px rgba(0,0,0,0.08); opacity: 0; animation: show 0.6s ease fo
                  <li>Нажимаем <span class="h-g">«Создать заявку»</span>.</li>
                 <li>После ремонта с комментарием <span class="h-g">«Выполнена»</span> закрываем.</li>
             </ol>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
+    const fixikPool = document.getElementById('fixik-pool');
+    const allFixiks = fixikPool.querySelectorAll('.fixik');
+
+    // Массив фиксиков для каждой группы
+    const groupFixikMapping = {
+        "ЛИНИЯ ATLANTA": "1.gif", // Симка
+        "ЛИНИЯ SIENNA": "2.gif", // Верка
+        "БОИКСЫ": "3.gif", // Фаер
+        "КВАНТОВКА": "4.gif", // Шпуля
+        "СОРТИРОВКА": "1.gif", // Нолик
+        "МОЙКА": "3.gif", // Папус
+    };
+    const defaultFixik = ""; // Дефолтный
+
     const data = [
         { title: "ЛИНИЯ ATLANTA", color: "#e74c3c", items: [
             {short: "Упаковочная ATLANTA", full: "1.2.6.47 Машина упаковочная Ulma ATLANTA E", img: "img/atlanta.jpg?text=ATLANTA"},
@@ -138,6 +165,57 @@ box-shadow: 0 2px 8px rgba(0,0,0,0.08); opacity: 0; animation: show 0.6s ease fo
     const imgEl = document.getElementById('item-img');
     const btnLink = document.getElementById('btn-link');
 
+    // Функция, которая находит доступного фиксика из пула, делает его видимым
+    // и запускает анимацию бега.
+    function runFixik(btn, groupTitle) {
+        const fixikImgSrc = groupFixikMapping[groupTitle] || defaultFixik; // Выбираем картинку фиксика
+        
+        // Находим невидимого фиксика или создаем новый, если все заняты
+        let activeFixik = document.querySelector('.fixik:not([style*="opacity: 1"])');
+        if (!activeFixik) {
+            activeFixik = document.createElement('img');
+            activeFixik.className = 'fixik';
+            activeFixik.alt = 'Fixik';
+            fixikPool.appendChild(activeFixik);
+        }
+        
+        activeFixik.src = fixikImgSrc; // Устанавливаем нужную картинку
+        activeFixik.style.opacity = '2';
+        activeFixik.style.left = btn.getBoundingClientRect().left + 'px';
+        activeFixik.style.top = btn.getBoundingClientRect().top + 'px';
+
+        // Запускаем анимацию бега после небольшой задержки
+        setTimeout(() => {
+            const linkRect = btnLink.getBoundingClientRect();
+            activeFixik.style.left = (linkRect.left - 80) + 'px'; // Позиция рядом с кнопкой
+            activeFixik.style.top = (linkRect.top - 50) + 'px';
+        }, 500);
+    }
+
+    // Обработчик клика на кнопку "В IntraDesk"
+    btnLink.onclick = (e) => {
+        e.preventDefault(); // Предотвращаем стандартное поведение ссылки
+        
+        // Находим активного (видимого) фиксика
+        const activeFixik = document.querySelector('.fixik[style*="opacity: 1"]');
+        
+        if (activeFixik) {
+            activeFixik.classList.add('exploding'); // Добавляем класс для анимации взрыва
+            
+            setTimeout(() => {
+                activeFixik.style.opacity = '0'; // Скрываем фиксика
+                activeFixik.classList.remove('exploding');
+                activeFixik.src = "fire.gif"; // Возвращаем дефолтную картинку
+                
+                // Перенаправляем пользователя на ссылку
+                window.location.href = "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742";
+            }, 1000); // Длительность анимации взрыва
+        } else {
+            // Если активного фиксика нет (маловероятно, но на всякий случай), просто переходим
+            window.location.href = "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742";
+        }
+    };
+
     data.forEach((group, index) => {
         let section = document.createElement('div');
         section.className = 'group';
@@ -150,7 +228,9 @@ box-shadow: 0 2px 8px rgba(0,0,0,0.08); opacity: 0; animation: show 0.6s ease fo
             let btn = document.createElement('button');
             btn.style.background = group.color;
             btn.innerText = item.short;
-            btn.onclick = () => {
+            btn.onclick = (e) => {
+                runFixik(e.target, group.title); // Запускаем анимацию с выбором фиксика
+                
                 navigator.clipboard.writeText(item.full);
                 imgEl.src = item.img;
                 imgEl.style.display = 'block';
@@ -158,7 +238,6 @@ box-shadow: 0 2px 8px rgba(0,0,0,0.08); opacity: 0; animation: show 0.6s ease fo
                 void imgEl.offsetWidth; 
                 imgEl.classList.add('anim-img');
                 
-                btnLink.href = "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742";
                 btnLink.style.display = 'block';
             };
             section.querySelector('.grid').appendChild(btn);
