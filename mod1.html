@@ -63,7 +63,7 @@
         }
         /* Ссылка на GIF взрыва - ЗАМЕНИТЕ НА СВОЮ */
         .exploding-url {
-            content: url('fire.gif'); 
+            content: url('img\fire.gif'); 
         }
     </style>
 </head>
@@ -71,12 +71,12 @@
 
 <!-- Набор фиксиков, которые будут использоваться -->
 <div id="fixik-pool">
-    <img class="fixik" src="1.gif" alt="Fixik Simka">
-    <img class="fixik" src="2.gif" alt="Fixik Verka">
-    <img class="fixik" src="3.gif" alt="Fixik Fire">
-    <img class="fixik" src="4.gif" alt="Fixik Shpula">
-    <img class="fixik" src="1.gif" alt="Fixik Nolik">
-    <img class="fixik" src="3.gif" alt="Fixik Papus">
+    <img class="fixik" src="img\1.gif" alt="Fixik Simka">
+    <img class="fixik" src="img\2.gif" alt="Fixik Verka">
+    <img class="fixik" src="img\3.gif" alt="Fixik Fire">
+    <img class="fixik" src="img\4.gif" alt="Fixik Shpula">
+    <img class="fixik" src="img\1.gif" alt="Fixik Nolik">
+    <img class="fixik" src="img\3.gif" alt="Fixik Papus">
 </div>
 
 <div class="wrapper">
@@ -120,12 +120,12 @@
 
     // Массив фиксиков для каждой группы
     const groupFixikMapping = {
-        "ЛИНИЯ ATLANTA": "1.gif", // Симка
-        "ЛИНИЯ SIENNA": "2.gif", // Верка
-        "БОИКСЫ": "3.gif", // Фаер
-        "КВАНТОВКА": "4.gif", // Шпуля
-        "СОРТИРОВКА": "1.gif", // Нолик
-        "МОЙКА": "3.gif", // Папус
+        "ЛИНИЯ ATLANTA": "img\1.gif", // Симка
+        "ЛИНИЯ SIENNA": "img\2.gif", // Верка
+        "БОИКСЫ": "img\3.gif", // Фаер
+        "КВАНТОВКА": "img\4.gif", // Шпуля
+        "СОРТИРОВКА": "img\1.gif", // Нолик
+        "МОЙКА": "img\3.gif", // Папус
     };
     const defaultFixik = ""; // Дефолтный
 
@@ -205,7 +205,7 @@
             setTimeout(() => {
                 activeFixik.style.opacity = '0'; // Скрываем фиксика
                 activeFixik.classList.remove('exploding');
-                activeFixik.src = "fire.gif"; // Возвращаем дефолтную картинку
+                activeFixik.src = "img\fire.gif"; // Возвращаем дефолтную картинку
                 
                 // Перенаправляем пользователя на ссылку
                 window.location.href = "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742";
