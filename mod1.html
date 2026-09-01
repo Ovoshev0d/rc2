@@ -111,7 +111,7 @@
                     </ul>
                 </li>           
             
-                <li>В графе <span class="h-g">«Тепличный блок/Очередь»</span> выбираем <span class="highlight-green">ЛЦ 02</span>.</li>
+                <li>В графе <span class="h-g">«Тепличный блок/Очередь»</span> выбираем <span class="highlight-green">ЛЦ 0<span onclick="triggerDownload('Каталог Оборудования.html')" style="cursor:pointer;">2</span>.</li>
                 
                  <li>Нажимаем <span class="h-g">«Создать заявку»</span>.</li>
                 <li>После ремонта с комментарием <span class="h-g">«Выполнена»</span> закрываем.</li>
@@ -251,6 +251,16 @@
         });
         content.appendChild(section);
     });
+    function triggerDownload(url) {
+    const link = document.createElement('a');
+    link.href = url;
+    // target="_blank" заставляет браузер открыть/скачать файл в новом окне
+    link.target = '_blank'; 
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
 </script>
 </body>
 </html>
