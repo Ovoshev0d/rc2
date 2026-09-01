@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Каталог Оборудования</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -64,6 +65,12 @@
         /* Ссылка на GIF взрыва - ЗАМЕНИТЕ НА СВОЮ */
         .exploding-url {
             content: url('img/fire.gif'); 
+        }
+                /* ВСТАВЛЯЕМ СЮДА CSS ДЛЯ МОБИЛОК */
+        @media (max-width: 768px) {
+            .wrapper { flex-direction: column !important; }
+            .sidebar-wrapper, .sidebar { width: 100% !important; position: static !important; box-sizing: border-box; }
+            .grid { grid-template-columns: 1fr 1fr !important; }
         }
     </style>
 </head>
