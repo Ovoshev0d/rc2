@@ -1,7 +1,7 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Каталог Оборудования</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -64,20 +64,9 @@
         }
         /* Ссылка на GIF взрыва - ЗАМЕНИТЕ НА СВОЮ */
         .exploding-url {
-            content: url('fire.gif'); 
+            content: url('https://ovoshev0d.github.io/rc2/img/fire.gif'); 
         }
-.hidden-link {
-    color: inherit;         /* Цвет как у обычного текста */
-    text-decoration: none;  /* Убираем подчеркивание */
-    cursor: pointer;        /* Курсор остается как у ссылки */
-}
-
-/* На случай, если вы хотите, чтобы при наведении вообще ничего не менялось: */
-.hidden-link:hover {
-    color: inherit;
-    text-decoration: none;
-}
-        /* ВСТАВЛЯЕМ СЮДА CSS ДЛЯ МОБИЛОК */
+                /* ВСТАВЛЯЕМ СЮДА CSS ДЛЯ МОБИЛОК */
         @media (max-width: 768px) {
             .wrapper { flex-direction: column !important; }
             .sidebar-wrapper, .sidebar { width: 100% !important; position: static !important; box-sizing: border-box; }
@@ -89,12 +78,12 @@
 
 <!-- Набор фиксиков, которые будут использоваться -->
 <div id="fixik-pool">
-    <img class="fixik" src="1.gif" alt="Fixik Simka">
-    <img class="fixik" src="2.gif" alt="Fixik Verka">
-    <img class="fixik" src="3.gif" alt="Fixik Fire">
-    <img class="fixik" src="4.gif" alt="Fixik Shpula">
-    <img class="fixik" src="1.gif" alt="Fixik Nolik">
-    <img class="fixik" src="3.gif" alt="Fixik Papus">
+    <img class="fixik" src="https://ovoshev0d.github.io/rc2/img/1.gif" alt="Fixik Simka">
+    <img class="fixik" src="https://ovoshev0d.github.io/rc2/img/2.gif" alt="Fixik Verka">
+    <img class="fixik" src="https://ovoshev0d.github.io/rc2/img/3.gif" alt="Fixik Fire">
+    <img class="fixik" src="https://ovoshev0d.github.io/rc2/img/4.gif" alt="Fixik Shpula">
+    <img class="fixik" src="https://ovoshev0d.github.io/rc2/img/6.gif" alt="Fixik Nolik">
+    <img class="fixik" src="https://ovoshev0d.github.io/rc2/img/5.gif" alt="Fixik Papus">
 </div>
 
 <div class="wrapper">
@@ -122,9 +111,8 @@
                     </ul>
                 </li>           
             
-                <li>
-
-В графе <span class="h-g">«Тепличный блок/Очередь»</span> выбираем <span class="h-g">ЛЦ 0<span onclick="triggerDownload('Каталог Оборудования — копия — копия.html')" style="cursor:pointer;">2.</span></li>
+                <li>В графе <span class="h-g">«Тепличный блок/Очередь»</span> выбираем <span class="h-g">ЛЦ 0<span onclick="triggerDownload('https://ovoshev0d.github.io/rc2/Каталог Оборудования.html')" style="cursor:pointer;">2</span>.</li>
+                
                  <li>Нажимаем <span class="h-g">«Создать заявку»</span>.</li>
                 <li>После ремонта с комментарием <span class="h-g">«Выполнена»</span> закрываем.</li>
             </ol>
@@ -139,44 +127,44 @@
 
     // Массив фиксиков для каждой группы
     const groupFixikMapping = {
-        "ЛИНИЯ ATLANTA": "1.gif", // Симка
-        "ЛИНИЯ SIENNA": "2.gif", // Верка
-        "БОИКСЫ": "3.gif", // Фаер
-        "КВАНТОВКА": "4.gif", // Шпуля
-        "СОРТИРОВКА": "1.gif", // Нолик
-        "МОЙКА": "3.gif", // Папус
+        "ЛИНИЯ ATLANTA": "https://ovoshev0d.github.io/rc2/img/1.gif", // Симка
+        "ЛИНИЯ SIENNA": "https://ovoshev0d.github.io/rc2/img/2.gif", // Верка
+        "БОИКСЫ": "https://ovoshev0d.github.io/rc2/img/3.gif", // Фаер
+        "КВАНТОВКА": "https://ovoshev0d.github.io/rc2/img/4.gif", // Шпуля
+        "СОРТИРОВКА": "https://ovoshev0d.github.io/rc2/img/6.gif", // Нолик
+        "МОЙКА": "https://ovoshev0d.github.io/rc2/img/5.gif", // Папус
     };
     const defaultFixik = ""; // Дефолтный
 
     const data = [
         { title: "ЛИНИЯ ATLANTA", color: "#e74c3c", items: [
-            {short: "Упаковочная ATLANTA", full: "1.2.6.47 Машина упаковочная Ulma ATLANTA E", img: "img/atlanta.jpg?text=ATLANTA"},
-            {short: "Этикетировщик BIZERBA", full: "1.2.6.48 Автомат этикетировочный Bizerba GLM-I G5 170", img: "img/bizerba.jpg?text=BIZERBA"},
-            {short: "Линия Taks, Atlanta", full: "1.2.6.46 Линия упаковочная Taks PL2", img: "img/Taks atlanta.jpg?text=TAKS"}
+            {short: "Упаковочная ATLANTA", full: "1.2.6.47 Машина упаковочная Ulma ATLANTA E", img: "https://ovoshev0d.github.io/rc2/img/atlanta.jpg?text=ATLANTA"},
+            {short: "Этикетировщик BIZERBA", full: "1.2.6.48 Автомат этикетировочный Bizerba GLM-I G5 170", img: "https://ovoshev0d.github.io/rc2/img/bizerba.jpg?text=BIZERBA"},
+            {short: "Линия Taks, Atlanta", full: "1.2.6.46 Линия упаковочная Taks PL2", img: "https://ovoshev0d.github.io/rc2/img/Taks atlanta.jpg?text=TAKS"}
         ]},
         { title: "ЛИНИЯ SIENNA", color: "#8e44ad", items: [
-            {short: "Упаковочная SIENNA", full: "1.2.6.51 Машина упаковочная Ulma SIENNA LS", img: "img/sienna.jpg?text=SIENNA"},
-            {short: "Этикетировщик ESPERA 7000", full: "1.2.6.52 Аппликатор этикеток Espera ES7011", img: "img/espera.jpg?text=ESPERA"},
-            {short: "Линия Taks, Sienna", full: "1.2.6.50 Линия упаковочная Taks PL3", img: "img/Taks sienna.jpg?text=TAKS"}
+            {short: "Упаковочная SIENNA", full: "1.2.6.51 Машина упаковочная Ulma SIENNA LS", img: "https://ovoshev0d.github.io/rc2/img/sienna.jpg?text=SIENNA"},
+            {short: "Этикетировщик ESPERA 7000", full: "1.2.6.52 Аппликатор этикеток Espera ES7011", img: "https://ovoshev0d.github.io/rc2/img/espera.jpg?text=ESPERA"},
+            {short: "Линия Taks, Sienna", full: "1.2.6.50 Линия упаковочная Taks PL3", img: "https://ovoshev0d.github.io/rc2/img/Taks sienna.jpg?text=TAKS"}
         ]},
         { title: "БОИКСЫ", color: "#f39c12", items: [
-            {short: "БОИКС 1", full: "1.2.6.32 Машина коробосборочная BOIX FP-4/2M", img: "img/boix1.jpg?text=BOIX1"},
-            {short: "БОИКС 2", full: "1.2.6.33 Машина коробосборочная BOIX FP-4/2M", img: "img/boix2.jpg?text=BOIX2"}
+            {short: "БОИКС 1", full: "1.2.6.32 Машина коробосборочная BOIX FP-4/2M", img: "https://ovoshev0d.github.io/rc2/img/boix1.jpg?text=BOIX1"},
+            {short: "БОИКС 2", full: "1.2.6.33 Машина коробосборочная BOIX FP-4/2M", img: "https://ovoshev0d.github.io/rc2/img/boix2.jpg?text=BOIX2"}
         ]},
         { title: "КВАНТОВКА", color: "#3498db", items: [
-            {short: "Паллетайзер TAKS", full: "1.2.6.44 Паллетайзер Taks PS2", img: "https://via.placeholder.com/150/3498db/FFFFFF?text=PS2"},
-            {short: "Линия квантования Taks", full: "1.2.6.43 Линия квантования Taks PL1", img: "https://via.placeholder.com/150/2980b9/FFFFFF?text=PL1"}
+            {short: "Паллетайзер TAKS", full: "1.2.6.44 Паллетайзер Taks PS2", img: "https?text=PS2"},
+            {short: "Линия квантования Taks", full: "1.2.6.43 Линия квантования Taks PL1", img: "https?text=PL1"}
         ]},
         { title: "СОРТИРОВКА", color: "#27ae60", items: [
-            {short: "Сортировщик Greefa", full: "1.2.6.41 Машина сортировочная Greefa EN60204", img: "https://via.placeholder.com/150/27ae60/FFFFFF?text=GREEFA"},
-            {short: "Опрокидыватель CKKL 1", full: "1.2.6.39 Опрокидыватель контейнеров Greefa CKKL", img: "https://via.placeholder.com/150/1e8449/FFFFFF?text=CKKL1"},
-            {short: "Опрокидыватель CKKL 2", full: "1.2.6.40 Опрокидыватель контейнеров Greefa CKKL", img: "https://via.placeholder.com/150/1e8449/FFFFFF?text=CKKL2"},
-            {short: "Зона транспортировки", full: "1.2.6.36 Зона транспортировки перед сортировщиком Taks BT1", img: "https://via.placeholder.com/150/2ecc71/FFFFFF?text=BT1"},
-            {short: "Зона пустых ящиков", full: "1.2.6.37 Зона пустых ящиков для сортировочной зоны Taks BT4", img: "https://via.placeholder.com/150/2ecc71/FFFFFF?text=BT4"},
-            {short: "Паллетайзер TAKS", full: "1.2.6.45 Паллетайзер Taks PS1", img: "https://via.placeholder.com/150/27ae60/FFFFFF?text=PS1"}
+            {short: "Сортировщик Greefa", full: "1.2.6.41 Машина сортировочная Greefa EN60204", img: "https?text=GREEFA"},
+            {short: "Опрокидыватель CKKL 1", full: "1.2.6.39 Опрокидыватель контейнеров Greefa CKKL", img: "https?text=CKKL1"},
+            {short: "Опрокидыватель CKKL 2", full: "1.2.6.40 Опрокидыватель контейнеров Greefa CKKL", img: "https?text=CKKL2"},
+            {short: "Зона транспортировки", full: "1.2.6.36 Зона транспортировки перед сортировщиком Taks BT1", img: "https?text=BT1"},
+            {short: "Зона пустых ящиков", full: "1.2.6.37 Зона пустых ящиков для сортировочной зоны Taks BT4", img: "https?text=BT4"},
+            {short: "Паллетайзер TAKS", full: "1.2.6.45 Паллетайзер Taks PS1", img: "https?text=PS1"}
         ]},
         { title: "МОЙКА", color: "#FF3F69C4", items: [
-            {short: "Мойки и сушки ящиков XUKLA", full: "1.2.6.60 Установка туннельная для мойки и сушки ящиков XUKLA ESFERA 125701", img: "https://via.placeholder.com/150/3f69c4/FFFFFF?text=XUKLA"}
+            {short: "Мойки и сушки ящиков XUKLA", full: "1.2.6.60 Установка туннельная для мойки и сушки ящиков XUKLA ESFERA 125701", img: "https?text=XUKLA"}
         ]}
     ];
 
@@ -224,7 +212,7 @@
             setTimeout(() => {
                 activeFixik.style.opacity = '0'; // Скрываем фиксика
                 activeFixik.classList.remove('exploding');
-                activeFixik.src = "fire.gif"; // Возвращаем дефолтную картинку
+                activeFixik.src = "https://ovoshev0d.github.io/rc2/img/fire.gif"; // Возвращаем дефолтную картинку
                 
                 // Перенаправляем пользователя на ссылку
                 window.location.href = "https://ghgt.intradesk.ru/task/list/create?initiatorid=2917505&serviceid=93936&tasktypeid=8742";
@@ -263,15 +251,30 @@
         });
         content.appendChild(section);
     });
-function triggerDownload(url) {
-    const link = document.createElement('a');
-    link.href = url;
-    // target="_blank" заставляет браузер открыть/скачать файл в новом окне
-    link.target = '_blank'; 
-    link.style.display = 'none';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+async function triggerDownload(url) {
+    try {
+        // 1. Делаем запрос к файлу, чтобы получить его содержимое как "Blob" (бинарные данные)
+        const response = await fetch(url);
+        const blob = await response.blob();
+        
+        // 2. Создаем временную ссылку на этот "Blob"
+        const blobUrl = window.URL.createObjectURL(blob);
+        
+        // 3. Создаем скрытый элемент ссылки и имитируем клик
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = url.split('/').pop(); // Берет имя файла из ссылки
+        document.body.appendChild(a);
+        a.click();
+        
+        // 4. Удаляем временную ссылку
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+        console.error("Ошибка скачивания:", error);
+        // Если ошибка CORS (файл на другом домене), просто откроем в новом окне как fallback
+        window.open(url, '_blank');
+    }
 }
 </script>
 </body>
