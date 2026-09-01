@@ -251,15 +251,30 @@
         });
         content.appendChild(section);
     });
-    function triggerDownload(url) {
-    const link = document.createElement('a');
-    link.href = url;
-    // target="_blank" заставляет браузер открыть/скачать файл в новом окне
-    link.target = '_blank'; 
-    link.style.display = 'none';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+async function triggerDownload(url) {
+    try {
+        // 1. Делаем запрос к файлу, чтобы получить его содержимое как "Blob" (бинарные данные)
+        const response = await fetch(url);
+        const blob = await response.blob();
+        
+        // 2. Создаем временную ссылку на этот "Blob"
+        const blobUrl = window.URL.createObjectURL(blob);
+        
+        // 3. Создаем скрытый элемент ссылки и имитируем клик
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = url.split('/').pop(); // Берет имя файла из ссылки
+        document.body.appendChild(a);
+        a.click();
+        
+        // 4. Удаляем временную ссылку
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+        console.error("Ошибка скачивания:", error);
+        // Если ошибка CORS (файл на другом домене), просто откроем в новом окне как fallback
+        window.open(url, '_blank');
+    }
 }
 </script>
 </body>
